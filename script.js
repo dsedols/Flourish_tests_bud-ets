@@ -1,19 +1,24 @@
-// Klausāmies ziņojumus no Flourish iFrame
-window.addEventListener("message", function(event) {
-  // Drošības nolūkos pārliecināmies, ka ziņa nāk no Flourish
-  if (event.origin.includes("flourish.studio")) {
-    console.log("Saņemts notikums no Flourish:", event.data);
+// script.js
+window.addEventListener("message", (event) => {
+  // Pārbauda vai nāk no Flourish
+  if (!event.data || !event.data.message) return;
 
-    // Šeit saglabājam klikšķa nosaukumu (ja tāds tiek sūtīts)
-    const clicked = event.data && event.data.name;
+  const msg = event.data.message;
+  const iframe = document.getElementById("vizContainer");
 
-    // Ja lietotājs klikšķina uz noteiktu kategoriju — mainām vizualizāciju
-    if (clicked === "Pensijas") {
-      document.getElementById("vizFrame").src = <div class="flourish-embed flourish-chart" data-src="visualisation/25939866"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/25939866/thumbnail" width="100%" alt="chart visualization" /></noscript></div>;
-    } else if (clicked === "Atbalsts ģimenēm ar bērniem") {
-      document.getElementById("vizFrame").src = <div class="flourish-embed flourish-chart" data-src="visualisation/25953970"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/25953970/thumbnail" width="100%" alt="chart visualization" /></noscript></div>;
-    } else if (clicked === "Sociālās aizsardzības vispārējie jautājumi") {
-      document.getElementById("vizFrame").src = <div class="flourish-embed flourish-chart" data-src="visualisation/25954058"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/25954058/thumbnail" width="100%" alt="chart visualization" /></noscript></div>;
+  // 🔹 Kad lietotājs klikšķina uz kādu apakškategoriju, Flourish nosūta “select” ziņojumu
+  if (msg === "select") {
+    const name = event.data.data?.name || "";
+
+    // 🔹 Šeit norādām, kuras vizualizācijas jāielādē pēc nosaukuma
+    if (name === "Pensijas") {
+      iframe.src = "https://flo.uri.sh/visualisation/25939866/embed"; // <-- Šeit liec savu Pensiju vizualizācijas ID
+    } 
+    else if (name === "Sociālās aizsardzības vispārējie jautājumi") {
+      iframe.src = "https://flo.uri.sh/visualisation/25954058/embed"; // <-- piemēram cita apakšvizualizācija
+    } 
+    else {
+      iframe.src = "https://flo.uri.sh/visualisation/25912086/embed"; // <-- atpakaļ uz galveno
     }
   }
 });
