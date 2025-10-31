@@ -3,30 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Valsts budžeta vizualizācija</title>
+  <title>Valsts budžeta vizualizācijas</title>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background: #f9f9f9;
+      background-color: #f5f5f5;
+      margin: 0;
+      text-align: center;
     }
-    #vizContainer {
+    h2 {
+      margin-top: 20px;
+      color: #333;
+    }
+    .buttons {
+      margin: 15px 0;
+    }
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    iframe {
       width: 100%;
-      height: 100vh;
+      height: 85vh;
       border: none;
     }
   </style>
 </head>
 
 <body>
-  <!-- Galvenā vieta, kur ielādējas vizualizācijas -->
-  <iframe 
-    id="vizContainer"
-    src="https://flo.uri.sh/visualisation/25912086/embed" 
-    allowfullscreen>
-  </iframe>
+  <h2>Valsts budžeta vizualizācijas</h2>
 
-  <!-- Script fails, kas pārvalda klikšķus -->
-  <script src="script.js"></script>
+  <div class="buttons">
+    <button onclick="loadViz('galvena')">Galvenā vizualizācija</button>
+    <button onclick="loadViz('pensijas')">Pensijas</button>
+    <button onclick="loadViz('izglitiba')">Izglītība</button>
+  </div>
+
+  <iframe id="vizFrame" src="https://flo.uri.sh/visualisation/25912086/embed" allowfullscreen></iframe>
+
+  <script>
+    function loadViz(type) {
+      const iframe = document.getElementById("vizFrame");
+
+      if (type === "galvena") {
+        iframe.src = "https://flo.uri.sh/visualisation/25912086/embed"; // <-- galvenā vizualizācija
+      } else if (type === "Pensijas") {
+        iframe.src = "https://flo.uri.sh/visualisation/25939866/embed"; // <-- pensiju vizualizācijas EMBED links
+      } else if (type === "Sociālās aizsardzības vispārējie jautājumi") {
+        iframe.src = "https://flo.uri.sh/visualisation/25954058/embed"; // <-- izglītības vizualizācijas EMBED links
+      }
+    }
+  </script>
 </body>
 </html>
