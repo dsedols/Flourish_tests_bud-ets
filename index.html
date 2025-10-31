@@ -1,13 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="lv">
 <head>
-  <meta charset="utf-8">
-  <title>Valsts budžeta interaktīvās vizualizācijas</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valsts budžeta vizualizācija</title>
   <style>
     body {
       margin: 0;
-      background-color: #f7f7f7;
+      padding: 0;
+      background-color: #f5f5f5;
     }
     iframe {
       width: 100%;
@@ -18,11 +19,15 @@
 </head>
 
 <body>
+  <!-- 🔹 ŠEIT IR VIETA, KUR TIEK RĀDĪTA TAVA GALVENĀ FLOURISH VIZUALIZĀCIJA -->
+  <!-- ⬇️ ŠEIT NOLIEC SAVU "EMBED" LINKU NO FLOURISH (NO Export → Embed) -->
+  <iframe 
+    id="vizFrame"
+    src=<div class="flourish-embed flourish-hierarchy" data-src="visualisation/25912086"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/25912086/thumbnail" width="100%" alt="hierarchy visualization" /></noscript></div>
+    allowfullscreen>
+  </iframe>
 
-  <div class="flourish-embed flourish-hierarchy" data-src="visualisation/25912086"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/25912086/thumbnail" width="100%" alt="hierarchy visualization" /></noscript></div>
-  
+  <!-- 🔹 ŠEIT PIEVIENO JAVASCRIPT FAILU, KAS KLAUSĀS KLIKŠĶUS -->
   <script src="script.js"></script>
-  
 </body>
 </html>
-
