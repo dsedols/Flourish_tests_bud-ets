@@ -1,18 +1,19 @@
-// Izvēlas HTML elementu ar id="vizFrame"
-function loadViz(section) {
-  const iframe = document.getElementById("vizFrame");
+// Klausāmies ziņojumus no Flourish iFrame
+window.addEventListener("message", function(event) {
+  // Drošības nolūkos pārliecināmies, ka ziņa nāk no Flourish
+  if (event.origin.includes("flourish.studio")) {
+    console.log("Saņemts notikums no Flourish:", event.data);
 
-  // Galvenā vizualizācija
-  if (section === "index.html") {
-    iframe.src = <div class="flourish-embed flourish-hierarchy" data-src="visualisation/25912086"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/25912086/thumbnail" width="100%" alt="hierarchy visualization" /></noscript></div>
-  // Pensiju sadaļa
-  } else if (section === "Pensijas") {
-    iframe.src = <div class="flourish-embed flourish-chart" data-src="visualisation/25939866"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/25939866/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
-  // Pabalstu sadaļa
-  } else if (section === "Atbalsts ģimenēm ar bērniem") {
-    iframe.src = <div class="flourish-embed flourish-chart" data-src="visualisation/25953970"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/25953970/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+    // Šeit saglabājam klikšķa nosaukumu (ja tāds tiek sūtīts)
+    const clicked = event.data && event.data.name;
+
+    // Ja lietotājs klikšķina uz noteiktu kategoriju — mainām vizualizāciju
+    if (clicked === "Pensijas") {
+      document.getElementById("vizFrame").src = <div class="flourish-embed flourish-chart" data-src="visualisation/25939866"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/25939866/thumbnail" width="100%" alt="chart visualization" /></noscript></div>;
+    } else if (clicked === "Atbalsts ģimenēm ar bērniem") {
+      document.getElementById("vizFrame").src = <div class="flourish-embed flourish-chart" data-src="visualisation/25953970"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/25953970/thumbnail" width="100%" alt="chart visualization" /></noscript></div>;
+    } else if (clicked === "Sociālās aizsardzības vispārējie jautājumi") {
+      document.getElementById("vizFrame").src = <div class="flourish-embed flourish-chart" data-src="visualisation/25954058"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/25954058/thumbnail" width="100%" alt="chart visualization" /></noscript></div>;
+    }
   }
-
-  // Vari pievienot vēl citas sadaļas pēc vajadzības:
-  // else if (section === "veseliba") { iframe.src = "https://flo.uri.sh/visualisation/..." }
-}
+});
