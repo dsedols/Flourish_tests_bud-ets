@@ -3,7 +3,7 @@ function loadViz(section) {
   const iframe = document.getElementById("vizFrame");
 
   // Galvenā vizualizācija
-  if (section === "index") {
+  if (section === "index.html") {
     iframe.src = <div class="flourish-embed flourish-hierarchy" data-src="visualisation/25912086"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/25912086/thumbnail" width="100%" alt="hierarchy visualization" /></noscript></div>
   // Pensiju sadaļa
   } else if (section === "Pensijas") {
